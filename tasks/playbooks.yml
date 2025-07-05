@@ -2,6 +2,9 @@
 - name: information to the vms collected
   hosts: all
   become: yes
+  gather_facts: false
   tasks:
     - name: make an ping to the vm
       ansible.builtin.ping:
+    - name: show a disk usage
+      ansible.builtin.command: df -h
