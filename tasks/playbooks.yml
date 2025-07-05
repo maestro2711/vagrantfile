@@ -1,0 +1,7 @@
+---
+- name: information to the vms collected
+  hosts: all
+  become: yes
+  tasks:
+    - name: make an ping to the vm
+      ansible.builtin.ping:
