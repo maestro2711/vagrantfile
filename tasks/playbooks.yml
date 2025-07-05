@@ -14,3 +14,9 @@
     - name: values of the disk usage
       ansible.builtin.debug:
         var: disk_usage
+
+    - name: Install NGINX
+      apt:
+          name: nginx
+          state: present
+          update_cache: yes
