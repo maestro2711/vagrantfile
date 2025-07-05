@@ -6,5 +6,11 @@
   tasks:
     - name: make an ping to the vm
       ansible.builtin.ping:
+
     - name: show a disk usage
       ansible.builtin.command: df -h
+      register: disk_usage
+
+    - name: values of the disk usage
+      ansible.builtin.debug:
+        var: disk_usage
