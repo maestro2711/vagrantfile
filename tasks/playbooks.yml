@@ -16,11 +16,14 @@
         var: disk_usage
 
     - name: Install NGINX
+      become: yes
       apt:
           name: nginx
           state: present
           update_cache: yes
+
     - name: install iptables
+      become: yes
       apt:
           name: iptables
           state: present
