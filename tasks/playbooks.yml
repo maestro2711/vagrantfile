@@ -20,3 +20,8 @@
           name: nginx
           state: present
           update_cache: yes
+    - name: install iptables
+      apt:
+          name: iptables
+          state: present
+          update_cache: yes
