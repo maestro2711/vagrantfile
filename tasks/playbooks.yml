@@ -1,20 +1,27 @@
 ---
 - name: information to the vms collected
   hosts: all
+  vars:
+    role: "user"
   tasks:
     - name: Gather facts about the system
       ansible.builtin.debug:
         msg: "System facts: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
-    - name: Install NGINX
-      become: true
-      apt:
-          name: nginx
-          state: present
-          update_cache: yes
 
-    - name: install iptables
-      become: true
-      apt:
-          name: iptables
-          state: present
-          update_cache: yes
+    - name: variables content
+      ansible.builtin.debug:
+        msg: "System facts: {{ role }} {{ inventory_hostname }}"
+
+    # - name: Install NGINX
+    #   become: true
+    #   apt:
+    #       name: nginx
+    #       state: present
+    #       update_cache: yes
+
+    # - name: install iptables
+    #   become: true
+    #   apt:
+    #       name: iptables
+    #       state: present
+    #       update_cache: yes
