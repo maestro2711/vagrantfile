@@ -1,29 +1,19 @@
 ---
 - name: information to the vms collected
   hosts: all
-  become: yes
-  gather_facts: false
   tasks:
-    - name: make an ping to the vm
-      ansible.builtin.ping:
-
-    - name: show a disk usage
-      ansible.builtin.command: df -h
-      register: disk_usage
-
-    - name: values of the disk usage
-      ansible.builtin.debug:
-        var: disk_usage
-
+    - name: Gather facts about the system
+      ansible,builtin.debug:
+        msg: "System facts: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
     - name: Install NGINX
-      become: yes
+      become: true
       apt:
           name: nginx
           state: present
           update_cache: yes
 
     - name: install iptables
-      become: yes
+      become: true
       apt:
           name: iptables
           state: present
