@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Gather facts about the system
-      ansible,builtin.debug:
+      ansible.builtin.debug:
         msg: "System facts: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
     - name: Install NGINX
       become: true
