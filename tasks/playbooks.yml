@@ -1,6 +1,7 @@
 ---
 - name: information to the vms collected
   hosts: all
+  become: yes
   vars:
     role: "user"
   tasks:
@@ -11,6 +12,23 @@
     - name: variables content
       ansible.builtin.debug:
         msg: "System facts: {{ role }} {{ inventory_hostname }}"
+
+    - name: be sure that the directory exist
+      ansible.builtin.file:
+        path: /opt/startup
+        state: directory
+        mode: '0755'
+
+    - name: copy file to the hosts
+      ansible.builtin.copy:
+        src: demo.txt
+        dest: /opt/startup/demo.txt
+        mode: '0600'
+
+    - name: install htop package
+      package:
+        name: htop
+        state: present
 
     # - name: Install NGINX
     #   become: true
