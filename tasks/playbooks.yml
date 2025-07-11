@@ -50,6 +50,6 @@
 
     - name: copy an template
       ansible.builtin.template:
-         src: willkommen.txt.j2
+         src: willkommen.txt.j2 # tmplate
          dest: /tmp
          mode: 0600
