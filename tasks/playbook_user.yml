@@ -22,7 +22,7 @@
       loop: "{{ users }}"
       when: inventory_hostname == item.host
 
-      - name: add ssh_keys
+    - name: add ssh_keys
         ansible.builtin.authorized_key:
           user: "{{ item.name }}"
           key: "{{ item.key }}"
