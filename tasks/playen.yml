@@ -1,6 +1,6 @@
 ---
 - name: VMs configuration
-  host: all
+  hosts: all
   become: true
   tasks:
   - name: install default packages

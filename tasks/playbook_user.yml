@@ -1,0 +1,30 @@
+---
+- name: create user with ssh keys
+  hosts: all
+  become: true
+  vars:
+    users:
+      - {name: deploy, group: deploy, key: "{{ lookup('file','key/deploy.pub') }}", host: 'vm-databases' }
+      - {name: monitoring, group: monitoring, key: "{{ lookup('file','key/monitoring.pub') }}", host: 'vm-admin' }
+
+  tasks:
+    - name: create group
+      ansible.builtin.group:
+        name: "{{ item.group }}"
+      loop: "{{ users }}"
+      when: inventory_hostname == item.host
+
+    - name: user created
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        group: "{{ item.group }}"
+        shell: /bin/bash
+      loop: "{{ users }}"
+      when: inventory_hostname == item.host
+
+      - name: add ssh_keys
+        ansible.builtin.authorized_key:
+          user: "{{ item.name }}"
+          key: "{{ item.key }}"
+        loop: "{{ users }}"
+        when: inventory_hostname == item.host
