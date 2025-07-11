@@ -39,7 +39,14 @@
       #when: inventory_hostname in groups['webservers']
       #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
       when: inventory_hostname == "vm-databases"
-    
+
+    - name: create user
+      ansible.builtin.user:
+        name: backup
+        state: present
+        shell: /bin/bash
+      when: inventory_hostname == "vm-databases"
+        
 
     # - name: install iptables
     #   become: true
