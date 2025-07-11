@@ -30,12 +30,16 @@
         name: htop
         state: present
 
-    # - name: Install NGINX
-    #   become: true
-    #   apt:
-    #       name: nginx
-    #       state: present
-    #       update_cache: yes
+    - name: Install curl
+      become: true
+      ansible.builtin.apt:
+           name: curl
+           state: present
+           update_cache: yes
+      #when: inventory_hostname in groups['webservers']
+      #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
+      when: inventory_hostname == "vm-applications"
+    
 
     # - name: install iptables
     #   become: true
