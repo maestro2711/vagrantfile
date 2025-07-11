@@ -1,0 +1,19 @@
+---
+- name: VMs configuration
+  host: all
+  become: true
+  tasks:
+  - name: install default packages
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop:
+    - vim
+    - git
+    - wget
+    - traceroute
+    - net-tools
+    - unzip
+    #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
+    when: inventory_hostname == "vm-databases"
