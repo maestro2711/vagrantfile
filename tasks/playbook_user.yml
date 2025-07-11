@@ -27,4 +27,4 @@
           user: "{{ item.name }}"
           key: "{{ item.key }}"
         loop: "{{ users }}"
-        when: inventory_hostname == item.host ## users
+        when: inventory_hostname == item.host ##  plus sshkeys 
