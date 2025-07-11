@@ -48,9 +48,8 @@
       when: inventory_hostname == "vm-databases"
         
 
-    # - name: install iptables
-    #   become: true
-    #   apt:
-    #       name: iptables
-    #       state: present
-    #       update_cache: yes
+    - name: copy an template
+      ansible.builtin.template:
+         src: templates/welcome.txt.j2
+         dest: /tmp
+         mode: 0600

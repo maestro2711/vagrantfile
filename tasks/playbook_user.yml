@@ -23,8 +23,9 @@
       when: inventory_hostname == item.host
 
     - name: add ssh_keys
-        ansible.builtin.authorized_key:
+      ansible.builtin.authorized_key:
           user: "{{ item.name }}"
           key: "{{ item.key }}"
-        loop: "{{ users }}"
-        when: inventory_hostname == item.host ##  plus sshkeys 
+          state: present
+      loop: "{{ users }}"
+      when: inventory_hostname == item.host # plus sshkeys 
