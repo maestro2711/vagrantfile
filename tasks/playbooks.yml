@@ -31,14 +31,14 @@
         state: present
 
     - name: Install curl
-      become: true
+      #become: true
       ansible.builtin.apt:
            name: curl
            state: present
            update_cache: yes
       #when: inventory_hostname in groups['webservers']
       #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
-      when: inventory_hostname == "vm-applications"
+      when: inventory_hostname == "vm-databases"
     
 
     # - name: install iptables
