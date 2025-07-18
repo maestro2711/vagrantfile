@@ -1,19 +1,43 @@
 ---
 - name: VMs configuration
   hosts: all
+  gather_facts: no
   become: true
   tasks:
-  - name: install default packages
-    ansible.builtin.apt:
-      name: "{{ item }}"
-      state: present
-      update_cache: yes
-    loop:
-    - vim
-    - git
-    - wget
-    - traceroute
-    - net-tools
-    - unzip
-    #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
-    when: inventory_hostname == "vm-databases"
+    - block:
+        - name: install paquet_not_found
+          ansible.builtin.apt:
+            name: paquet_not_found
+            state: present
+            update_cache: yes
+        - name: install curl
+          ansible.builtin.apt:
+            name: curl
+            state: present
+            update_cache: yes
+      rescue:
+        - name: create a log file
+          copy:
+            content: "The package 'paquet_not_found' is not available on {{ inventory_hostname }}."
+            dest: /var/logs/ansible/error.log
+            mode: '0644'
+
+      always:
+        - name: user message
+          debug:
+            msg: "The task to install 'paquet_not_found' has been attempted on {{ inventory_hostname }}."
+
+    # - name: install default packages
+    #   ansible.builtin.apt:
+    #     name: "{{ item }}"
+    #     state: present
+    #     update_cache: yes
+    #   loop:
+    #   - vim
+    #   - git
+    #   - wget
+    #   - traceroute
+    #   - net-tools
+    # - unzip
+    # #when: inventory_hostname in groups['webservers'] or inventory_hostname in groups['dbservers']
+    #   when: inventory_hostname == "vm-databases"
