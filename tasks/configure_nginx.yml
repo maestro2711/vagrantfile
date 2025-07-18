@@ -1,0 +1,42 @@
+---
+- name: install and configure nginx
+  hosts: all
+  become: true
+  gather_facts: no
+  tasks:
+  - name: Install nginx
+    ansible.builtin.apt:
+      name: nginx
+      state: present
+      update_cache: yes
+    tags:
+    - install
+    - web
+
+  - name: backup default page
+    ansible.builtin.command: mv /var/www/html/index.html /var/www/html/index.html.bak
+    args:
+      removes: /var/www/html/index.html.bak
+    ignore_errors: true
+    tags:
+    - configure
+    - web
+
+  - name: deafult page
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html/index.html
+      mode: '0644'
+    notify: restart nginx
+    tags:
+    - configure
+    - web
+  handlers:
+  - name: restart nginx
+    ansible.builtin.systemd:
+      name: nginx
+      state: restarted
+    tags:
+    - web
+    - restart
+   
