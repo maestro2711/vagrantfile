@@ -1,0 +1,5 @@
+- name: create a owner readme file
+  ansible.builtin.copy:
+    dest: /opt/readme.txt
+    content: "{{ custom_message }} on {{ inventory_hostname }}"
+    mode: '0644'
