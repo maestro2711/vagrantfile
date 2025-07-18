@@ -19,7 +19,7 @@
         - name: create a log file
           copy:
             content: "The package 'paquet_not_found' is not available on {{ inventory_hostname }}."
-            dest: /var/logs/ansible/error.log
+            dest: /var/log/ansible-error.log
             mode: '0644'
 
       always:
