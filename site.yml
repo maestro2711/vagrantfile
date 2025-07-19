@@ -6,7 +6,7 @@
   tasks:
   - name: install mongodb only on vm-database
     include_tasks: tasks/install_mongodb.yml
-    when: inventory_hostname == 'vm-database'
+    when: inventory_hostname == 'vm-databases'
 
   - name: install nginx only on vm-applications
     include_tasks: tasks/install_nginx.yml
@@ -18,4 +18,4 @@
 
   - name: deploy readme file on all hosts
     include_tasks: tasks/deploy_readme.yml
-    when: inventory_hostname in ['vm-database', 'vm-applications']
+    when: inventory_hostname in ['vm-databases', 'vm-applications']
