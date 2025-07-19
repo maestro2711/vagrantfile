@@ -13,7 +13,7 @@
      src: index.html.j2
      dest: "/var/www/{{ item }}/index.html"
      mode: '0644'
-   loop: "{{ appliactions }}"
+   loop: "{{ applications }}"
    when: inventory_hostname == 'vm-applications'
    tags:
     - setup
