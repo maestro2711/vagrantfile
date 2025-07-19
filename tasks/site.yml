@@ -5,18 +5,18 @@
   vars:
     custom_message: "Welcome to the application deployment"
   tasks:
-  - name: install mongodb only on vm-database
-    include_tasks: install_mongodb.yml
-    when: inventory_hostname == 'vm-databases'
+    - name: install mongodb only on vm-database
+      include_tasks: install_mongodb.yml
+      when: inventory_hostname == 'vm-databases'
 
-  - name: install nginx only on vm-applications
-    include_tasks: install_nginx.yml
-    when: inventory_hostname == 'vm-applications'
+    - name: install nginx only on vm-applications
+      include_tasks: install_nginx.yml
+      when: inventory_hostname == 'vm-applications'
 
-  - name: install java only on vm-applications
-    include_tasks: install_java.yml
-    when: inventory_hostname == 'vm-applications'
+    - name: install java only on vm-applications
+      include_tasks: install_java.yml
+      when: inventory_hostname == 'vm-applications'
 
-  - name: deploy readme file on all hosts
-    include_tasks: deploy_readme.yml
-    when: inventory_hostname in ['vm-databases', 'vm-applications']
+    - name: deploy readme file on all hosts
+      include_tasks: deploy_readme.yml
+      when: inventory_hostname in ['vm-databases', 'vm-applications']
