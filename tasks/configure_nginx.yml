@@ -4,15 +4,6 @@
   become: true
   gather_facts: no
   tasks:
-  - name: Install nginx
-    ansible.builtin.apt:
-      name: nginx
-      state: present
-      update_cache: yes
-    tags:
-    - install
-    - web
-
   - name: backup default page
     ansible.builtin.command: mv /var/www/html/index.html /var/www/html/index.html.bak
     args:
@@ -31,11 +22,4 @@
     tags:
     - configure
     - web
-  handlers:
-  - name: restart nginx
-    ansible.builtin.service:
-      name: nginx
-      state: restarted
-    tags:
-    - web
-    - restart
+  
