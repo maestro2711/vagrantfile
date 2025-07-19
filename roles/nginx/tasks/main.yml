@@ -7,3 +7,35 @@
    tags:
     - install
     - web
+
+ - name: create default page
+   ansible.builtin.template:
+     src: index.html.j2
+     dest: "/var/www/{{ item }}/index.html"
+     mode: '0644'
+   loop: "{{ appliactions }}"
+   when: inventory_hostname == 'vm-applications'
+   tags:
+    - setup
+   
+ - name: copy configuration
+   ansible.builtin.template:
+     src: application.conf.j2
+     dest: "/etc/nginx/sites-available/{{ item }}.conf"
+     mode: '0644'
+   loop: "{{ appliactions }}"
+   when: inventory_hostname == 'vm-applications'
+   tags:
+    - setup
+
+ - name: create symlink for configuration
+   ansible.builtin.file:
+     src: "/etc/nginx/sites-available/{{ item }}.conf"
+     dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
+     state: link
+   loop: "{{ appliactions }}"
+   notify: reload nginx
+   when: inventory_hostname == 'vm-applications'
+   tags:
+    - setup
+   
