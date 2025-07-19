@@ -33,7 +33,7 @@
     - web
   handlers:
   - name: restart nginx
-    ansible.builtin.systemd:
+    ansible.builtin.service:
       name: nginx
       state: restarted
     tags:
