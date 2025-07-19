@@ -23,7 +23,7 @@
      src: application.conf.j2
      dest: "/etc/nginx/sites-available/{{ item }}.conf"
      mode: '0644'
-   loop: "{{ appliactions }}"
+   loop: "{{ applications }}"
    when: inventory_hostname == 'vm-applications'
    tags:
     - setup
@@ -33,7 +33,7 @@
      src: "/etc/nginx/sites-available/{{ item }}.conf"
      dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
      state: link
-   loop: "{{ appliactions }}"
+   loop: "{{ applications }}"
    notify: reload nginx
    when: inventory_hostname == 'vm-applications'
    tags:
