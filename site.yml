@@ -1,3 +1,4 @@
+---
 - name: application deployment using machine 
   hosts: all
   become: true
