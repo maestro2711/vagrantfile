@@ -4,6 +4,6 @@ frontend_image: cantona084/front-imc:latest
 
 frontend_port: 3000
 #api_url: http://localhost/imc
-proxy_host: imc.local     # ou 192.168.10.12
+proxy_host: 192.168.10.12   # ou 192.168.10.12
 proxy_port: 80
 
