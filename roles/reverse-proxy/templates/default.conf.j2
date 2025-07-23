@@ -3,9 +3,14 @@ server {
     server_name {{ nginx_server_name }};
 
     location / {
-        proxy_pass http://frontend:3000;
+        proxy_pass http://frontend:80;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
+
+         # Réécrit les requêtes contenant "/imc" dans l'URL ABSOLUE
+        sub_filter 'http://localhost:80/imc' '/imc';
+        sub_filter_once off;
+        sub_filter_types text/html text/css application/javascript;
     }
 
     location /imc {
