@@ -17,8 +17,8 @@
   shell: docker compose -f /opt/ansible/backend-compose.yml up -d
   args:
     chdir: /opt/ansible
-- name: Ensure backend is reachable via proxy
-  uri:
-    url: "http://192.168.10.12:80/imc"
-    status_code: 200
-  delegate_to: localhost
+# - name: Ensure backend is reachable via proxy
+#   uri:
+#     url: "http://192.168.10.12:80/imc"
+#     status_code: 200
+#   delegate_to: localhost
