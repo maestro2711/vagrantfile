@@ -5,6 +5,12 @@
 - name: Install Docker Compose Plugin
   include_tasks: install_compose_plugin.yml
 
+- name: Install Docker SDK for Python
+  apt:
+    name: python3-docker
+    state: present
+    update_cache: true
+
 - name: Create shared Docker network if not exists
   docker_network:
     name: myapp-network
