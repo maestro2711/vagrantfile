@@ -1,3 +1,9 @@
+- name: Ensure /opt/ansible directory exists
+  file:
+    path: /opt/ansible
+    state: directory
+    mode: '0755'
+
 - name: Create Nginx config for proxy container
   template:
     src: default.conf.j2
@@ -14,3 +20,27 @@
   shell: docker compose -f proxy-compose.yml up -d
   args:
     chdir: /opt/ansible
+
+# 🔍 Vérification seulement après que le proxy tourne
+
+- name: Wait for proxy to be ready
+  wait_for:
+    host: "{{ proxy_host }}"
+    port: "{{ proxy_port }}"
+    delay: 2
+    timeout: 30
+  delegate_to: localhost
+
+- name: Ensure backend reachable via proxy
+  uri:
+    url: "http://{{ proxy_host }}:{{ proxy_port }}/imc"
+    status_code: 200
+  delegate_to: localhost
+  run_once: true
+
+- name: Ensure frontend reachable via proxy
+  uri:
+    url: "http://{{ proxy_host }}:{{ proxy_port }}/"
+    status_code: 200
+  delegate_to: localhost
+  run_once: true
