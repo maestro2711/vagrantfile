@@ -1,0 +1,15 @@
+---
+# defaults file for backend
+backend_image: cantona084/imc-ms:1.0.49
+backend_port: 8080
+mongo_host: mongodb
+mongo_port: 27017
+mongo_db: myappdb
+mongo_user: myuser
+mongo_password: mypassword
+# The values below are set in vault.yml
+# mongo_root_username: ...
+# mongo_root_password: ...
+# Note: Ensure that the mongo_root_username and mongo_root_password are set in vault.yml
+# to match the credentials used in the database service.
+# This is crucial for the backend to connect to the MongoDB service correctly.

@@ -1,0 +1,15 @@
+server {
+    listen {{ proxy_port }};
+
+    location / {
+        proxy_pass {{ frontend_target }};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location /imc/ {
+        proxy_pass {{ backend_target }}/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

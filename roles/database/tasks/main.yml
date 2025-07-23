@@ -1,0 +1,26 @@
+---
+
+# create directory structure
+- name: Create directory structure for database role
+  file: 
+    path: /opt/ansible/
+    state: directory
+    mode: '0755'
+    owner: vagrant
+
+# tasks file for database
+- name: Copy MongoDB docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/ansible/mongo-compose.yml
+
+- name: Start MongoDB container with docker-compose
+  shell: docker compose -f /opt/ansible/mongo-compose.yml up -d
+  args:
+    chdir: /opt/ansible
+- name: Ensure MongoDB is running
+  wait_for:
+    port: "{{ mongo_port }}"
+    delay: 10
+    timeout: 300
+    state: started  

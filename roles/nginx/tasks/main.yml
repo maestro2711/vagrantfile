@@ -10,7 +10,7 @@
     
  - name: ensure web root directory exists
    ansible.builtin.file:
-    path: /var/www/{{ item }}
+    path: /{{ nginx_websites_folder }}/{{ item }}
     state: directory
     mode: '0755'
    loop: "{{ applications }}"
@@ -21,7 +21,7 @@
  - name: create default page
    ansible.builtin.template:
      src: index.html.j2
-     dest: "/var/www/{{ item }}/index.html"
+     dest: "/{{ nginx_websites_folder }}/{{ item }}/index.html"
      mode: '0644'
    loop: "{{ applications }}"
    when: inventory_hostname == 'vm-applications'

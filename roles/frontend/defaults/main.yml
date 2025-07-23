@@ -1,0 +1,6 @@
+---
+# defaults file for frontend
+frontend_image: cantona084/front-imc:latest
+
+frontend_port: 3000
+api_url: http://localhost/imc

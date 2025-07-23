@@ -1,0 +1,7 @@
+---
+nginx_websites_folder: var/www
+applications:
+  - front-imc
+  - back-imc
+  - api-imc
+logs_folder: /var/logs/nginx

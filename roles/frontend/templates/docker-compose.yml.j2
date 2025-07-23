@@ -1,0 +1,26 @@
+version: '3'
+services:
+  frontend:
+    image: {{ frontend_image }}
+    ports:
+      - "{{ frontend_port }}:{{ frontend_port }}"
+    environment:
+      - REACT_APP_API_URL={{ api_url }}
+    restart: always
+    networks:
+      - myapp-network
+
+networks:
+    myapp-network:
+      external: true
+
+    
+  {% comment %} reverse-proxy:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./default.conf:/etc/nginx/nginx.conf
+    restart: always
+    networks:
+      - myapp-network {% endcomment %}

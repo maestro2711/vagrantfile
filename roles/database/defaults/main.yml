@@ -1,0 +1,8 @@
+---
+# defaults file for database
+mongo_image: mongo:4.4
+mongo_port: 27017
+mongo_db: myappdb
+# Les valeurs suivantes sont dans vault.yml
+# mongo_root_username: ...
+# mongo_root_password: ...

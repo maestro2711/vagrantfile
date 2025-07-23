@@ -1,0 +1,15 @@
+- hosts: applications
+  become: true
+  roles:
+
+    - docker_install
+    - backend
+    - frontend
+    - reverse-proxy
+
+- hosts: databases
+  become: true
+  roles:
+
+    - database
+    - docker_install

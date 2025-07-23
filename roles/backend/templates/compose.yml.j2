@@ -1,0 +1,16 @@
+version: '3'
+services:
+  backend:
+    image: {{ backend_image }}
+    ports:
+      - "{{ backend_port }}:{{ backend_port }}"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_user }}:{{ mongo_password }}@mongodb:{{ mongo_port }}/{{ mongo_db }}?authSource=admin
+    restart: always
+    networks:
+      - myapp-network
+
+networks:
+  myapp-network:
+    external: true
+    name: myapp-network

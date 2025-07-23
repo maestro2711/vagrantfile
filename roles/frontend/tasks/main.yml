@@ -1,0 +1,18 @@
+---
+#ensure the /opt/ansible directory exists
+- name: Ensure /opt/ansible directory exists
+  file:
+   path: /opt/ansible
+   state: directory
+   mode: '0755'
+
+# tasks file for frontend
+- name: Copy frontend docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/ansible/frontend-compose.yml
+
+- name: Start frontend container with docker-compose
+  shell: docker compose -f /opt/ansible/frontend-compose.yml up -d
+  args:
+    chdir: /opt/ansible
