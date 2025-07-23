@@ -12,7 +12,7 @@
 
 - name: Copy proxy docker-compose file
   template:
-    src: proxy-compose.yml.j2
+    src: docker-compose.yml.j2
     dest: /opt/ansible/proxy-compose.yml
     mode: '0644'
 
