@@ -1,0 +1,21 @@
+- name: Ensure Docker is installed (prérequis)
+  apt:
+    name: docker.io
+    state: present
+    update_cache: true
+
+- name: Install docker-compose-plugin
+  apt:
+    name: docker-compose-plugin
+    state: present
+    update_cache: true
+
+- name: Verify that docker compose is available
+  command: docker compose version
+  register: compose_version
+  changed_when: false
+  failed_when: compose_version.rc != 0
+
+- name: Debug compose version
+  debug:
+    msg: "Docker Compose version: {{ compose_version.stdout }}"

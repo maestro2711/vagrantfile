@@ -10,7 +10,11 @@
   apt:
     name: python3-docker
     state: present
-    update_cache: true
+    update_cache: 
+    
+- name: Install Docker Compose Plugin
+  include_tasks: install_compose_plugin.yml
+  
 - name: Create shared Docker network if not exists
   docker_network:
     name: myapp-network
