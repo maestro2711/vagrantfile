@@ -16,3 +16,16 @@
   shell: docker compose -f /opt/ansible/frontend-compose.yml up -d
   args:
     chdir: /opt/ansible
+
+- name: Ensure frontend is reachable via proxy
+  uri:
+    url: "http://{{ proxy_host }}:{{ proxy_port }}/"
+    status_code: 200
+    return_content: true
+  delegate_to: localhost
+  register: frontend_proxy_check
+
+- name: Afficher le résultat du frontend
+  debug:
+    msg: "Le frontend a répondu via le proxy avec le code {{ frontend_proxy_check.status }}"
+
