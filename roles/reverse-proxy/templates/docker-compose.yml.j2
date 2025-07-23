@@ -1,11 +1,13 @@
+version: '3'
+
 services:
   proxy:
     image: nginx:latest
     container_name: proxy
     ports:
-      - "80:80"
+      - "80:80"   
     volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
     networks:
       - myapp-network
     restart: always
@@ -13,4 +15,3 @@ services:
 networks:
   myapp-network:
     external: true
-    

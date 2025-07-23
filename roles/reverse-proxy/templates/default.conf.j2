@@ -8,16 +8,13 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
 
-        # Optionnel : sub_filter si tu veux corriger des URL codées dans le JS
-        # sub_filter 'http://localhost:3000' '';
-        # sub_filter_once off;
-        # sub_filter_types text/html text/css application/javascript;
+       
     }
 
-    # 🚫 Ce bloc est temporairement désactivé car le backend retourne une erreur 500
-    # location /imc {
-    #     proxy_pass http://backend:8080;
-    #     proxy_set_header Host $host;
-    #     proxy_set_header X-Real-IP $remote_addr;
-    # }
+    
+     location /imc {
+         proxy_pass http://backend:8080;
+         proxy_set_header Host $host;
+         proxy_set_header X-Real-IP $remote_addr;
+ }
 }
