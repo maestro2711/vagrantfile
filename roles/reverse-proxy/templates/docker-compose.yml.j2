@@ -1,19 +1,16 @@
-version: '3'
 services:
   proxy:
     image: nginx:latest
     container_name: proxy
     ports:
-      - "{{ proxy_port }}:80"
+      - "80:80"
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - frontend
-      - backend
-    restart: always
     networks:
       - myapp-network
+    restart: always
 
 networks:
   myapp-network:
     external: true
+    name: myapp-network
