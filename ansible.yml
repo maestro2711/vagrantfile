@@ -3,6 +3,7 @@
   roles:
 
     - docker_install
+    - database
     - backend
     - frontend
     - reverse-proxy
