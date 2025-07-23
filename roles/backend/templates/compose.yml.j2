@@ -2,8 +2,9 @@ version: '3'
 services:
   backend:
     image: {{ backend_image }}
-    ports:
-      - "{{ backend_port }}:{{ backend_port }}"
+    container_name: backend
+    expose:
+      - "8080"
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_user }}:{{ mongo_password }}@mongodb:{{ mongo_port }}/{{ mongo_db }}?authSource=admin
     restart: always

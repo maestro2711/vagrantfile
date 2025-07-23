@@ -2,17 +2,15 @@ version: '3'
 services:
   frontend:
     image: {{ frontend_image }}
-    ports:
-      - "{{ frontend_port }}:80"
+    container_name: frontend
+    expose:
+      - "3000"
     environment:
-      - REACT_APP_API_URL={{ api_url }}
+      - REACT_APP_API_URL=/imc
     restart: always
     networks:
       - myapp-network
 
 networks:
-    myapp-network:
-      external: true
-
-    
-  
+  myapp-network:
+    external: true

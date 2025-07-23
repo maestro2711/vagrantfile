@@ -1,15 +1,15 @@
 server {
-    listen {{ proxy_port }};
-     server_name imc.local;
+    listen 80;
+    server_name {{ nginx_server_name }};
 
     location / {
-        proxy_pass {{ frontend_target }};
+        proxy_pass http://frontend:3000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 
     location /imc {
-        proxy_pass {{ backend_target }};
+        proxy_pass http://backend:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
