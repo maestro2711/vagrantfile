@@ -1,0 +1,6 @@
+mongodb_host: 192.168.10.13 # L’IP de la VM vm-databases
+mongo_root_username: devops
+mongo_root_password: ansible
+mongo_db: imcdb # Nom de la base de données MongoDB
+mongo_user: myuser
+mongo_password: mypassword
