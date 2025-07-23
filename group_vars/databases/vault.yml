@@ -1,2 +1,5 @@
 mongo_root_username: devop
 mongo_root_password: ansible
+mongodb_host: 192.168.10.13 # MongoDB host IP
+mongodb_port: 27017 # MongoDB port
+mongodb_db: imcdb # MongoDB database name

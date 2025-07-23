@@ -1,17 +1,17 @@
 version: '3'
+
 services:
   backend:
-    image: {{ backend_image }}
+    image: cantona084/imc-ms:1.0.49
     container_name: backend
-    expose:
-      - "8080"
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_user }}:{{ mongo_password }}@mongodb:{{ mongo_port }}/{{ mongo_db }}?authSource=admin
-    restart: always
+      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_root_username }}:{{ mongo_root_password }}@{{ mongodb_host }}:27017/imcdb
+    ports:
+      - "8080:8080"
     networks:
       - myapp-network
+    restart: always
 
 networks:
   myapp-network:
     external: true
-    name: myapp-network
