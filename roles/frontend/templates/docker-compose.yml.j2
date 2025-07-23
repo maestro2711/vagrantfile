@@ -15,12 +15,4 @@ networks:
       external: true
 
     
-  {% comment %} reverse-proxy:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./default.conf:/etc/nginx/nginx.conf
-    restart: always
-    networks:
-      - myapp-network {% endcomment %}
+  
