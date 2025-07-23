@@ -1,6 +1,6 @@
 ---
 # defaults file for reverse-proxy
-#nginx_image: nginx
+nginx_image: nginx
 frontend_target: http://localhost:3000
 backend_target: http://localhost:8080
 proxy_port: 80

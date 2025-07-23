@@ -3,7 +3,7 @@ services:
   frontend:
     image: {{ frontend_image }}
     ports:
-      - "{{ frontend_port }}:{{ frontend_port }}"
+      - "{{ frontend_port }}:80"
     environment:
       - REACT_APP_API_URL={{ api_url }}
     restart: always
