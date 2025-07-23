@@ -10,6 +10,6 @@
 - hosts: databases
   become: true
   roles:
-
-    - database
     - docker_install
+    - database
+   
