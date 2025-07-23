@@ -7,6 +7,9 @@ mongo_port: 27017
 mongo_db: myappdb
 mongo_user: myuser
 mongo_password: mypassword
+proxy_host: imc.local     # ou 192.168.10.12
+proxy_port: 80
+
 # The values below are set in vault.yml
 # mongo_root_username: ...
 # mongo_root_password: ...

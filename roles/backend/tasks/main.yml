@@ -17,9 +17,8 @@
   shell: docker compose -f /opt/ansible/backend-compose.yml up -d
   args:
     chdir: /opt/ansible
-- name: Ensure backend is running
-  wait_for:
-    port: "{{ backend_port }}"
-    delay: 10
-    timeout: 300
-    state: started
+- name: Ensure backend is reachable via proxy
+  uri:
+    url: "http://{{ proxy_host }}:{{ proxy_port }}/imc"
+    status_code: 200
+  delegate_to: localhost
