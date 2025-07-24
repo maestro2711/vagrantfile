@@ -6,7 +6,7 @@ services:
     ports:
       - "{{ backend_external_port }}:{{ backend_internal_port }}"
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_root_username }}:{{ mongo_root_password }}@{{ mongodb_host }}:{{ mongodb_port }}/{{ mongodb_name }}
+      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_root_username }}:{{ mongo_root_password }}@{{ mongodb_host }}:{{ mongodb_port }}/{{ mongodb_db }}
     networks:
       - myapp-network
 

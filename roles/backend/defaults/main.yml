@@ -4,7 +4,7 @@
 
 mongodb_host: 192.168.10.13           # IP de la VM database
 mongodb_port: 27017
-mongodb_name: myappdb
+mongodb_db: imcdb
 
 mongo_root_username: devops
 mongo_root_password: ansible
