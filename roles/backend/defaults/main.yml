@@ -1,12 +1,19 @@
 ---
 # defaults file for backend
+# roles/backend/defaults/main.yml
+
+mongodb_host: 192.168.10.13           # IP de la VM database
+mongodb_port: 27017
+mongodb_name: myappdb
+
+mongo_root_username: devops
+mongo_root_password: ansible
+
+backend_container_name: backend
 backend_image: cantona084/imc-ms:1.0.49
-backend_port: 8080
-mongo_host: mongodb
-mongo_port: 27017
-mongo_db: myappdb
-mongo_user: myuser
-mongo_password: mypassword
+backend_internal_port: 8080
+backend_external_port: 8080
+
 proxy_host: 192.168.10.12     # ou 192.168.10.12
 proxy_port: 80
 
