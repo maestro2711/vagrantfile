@@ -5,7 +5,7 @@ services:
     image: cantona084/imc-ms:1.0.49
     container_name: backend
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://{{ mongo_root_username }}:{{ mongo_root_password }}@{{ mongodb_host }}:27017/imcdb
+    -  SPRING_DATA_MONGODB_URI=mongodb://devops:ansible@192.168.10.13:27017/imcdb
     ports:
       - "8080:8080"
     networks:
